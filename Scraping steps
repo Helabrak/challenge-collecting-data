@@ -1,0 +1,58 @@
+Scraping steps
+Getting the HTML file
+from bs4 import BeautifulSoup
+import requests
+
+source=requests.get('https://www.immoweb.be/en').text
+soup = BeautifulSoup(source,'lxml')
+
+print(soup.prettify())
+
+
+Finding (to grab info from HTML): try to access it like an attribute
+source=requests.get('website')
+soup = BeautifulSoup( source,'lxml' )
+to find a title:
+match=soup.tag.text (lets say title so soup.title.text- note text here to get only the text in the title and not the title tag )
+print( match )
+to find the first division:
+match=soup.div
+print( match )
+to find a specific division(ex: footer)
+match=soup.find(‘div’, class_=’footer’)
+print( match )
+to find a class within division: (example : article)
+article=soup.find(‘div’, class_=’article’)
+print( article )
+to access child tags in the class: to dig down and search for tags in class in division
+Now we need a loop to get all similar classes( articles) – this should be locality for example for all the listing be a house or apartment
+to find a locality
+Locality=soup.find('div', class_=<'classified__information--address-raw'>)
+print(Locality)
+
+Note: to find the part of the division in the inspect right click on price(example) and then inspect and not just inspect of the whole page
+<div class="classified__header-primary-info"><h1 class="classified__title">
+                                                                                    House
+                                                        for sale
+
+                    </h1> <p class="classified__price"><span aria-hidden="true">€1,390,000</span> <span class="sr-only">1390000€</span></p></div>
+
+
+
+
+article=soup.find('what you are trying to find')
+print(what you are trying to find)
+
+for article in soup.findall('article'):
+    headline=article.h2.a.text
+    print(headline)
+
+locality=article.find('div',class='entry-content').p.text
+print(locality)
+
+Turn to CSV :
+import csv
+for loop..list.append(websites):
+   Maybe other selection from the list.append
+output_filename = ....
+    your_list.to_csv(output_filename)
