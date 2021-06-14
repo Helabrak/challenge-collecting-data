@@ -50,7 +50,7 @@ Visuals:
 None
 
 Contributors:
-other team members are  
+other team members who worked on/contributed to this project:
 Leonor Drummond:https://github.com/ltadrummond
 JacquesDeclercq: https://github.com/JacquesDeclercq
 Bilal Mesmoudi:https://github.com/BMesm
