@@ -47,6 +47,7 @@ price = soup.body.main.find( 'span', {'class': 'sr-only'} ).text
 print(price)
 
 Visuals:
+None
 
 Contributors:
 other team members are  
@@ -56,8 +57,7 @@ Bilal Mesmoudi:https://github.com/BMesm
 
 
 Data scraping: 
-we used Beautiful soup to get the data from individul links for properties and then used selenium to automate the scraping for the same parameters fro
-the parameters used werem the website
+we used Beautiful soup to get the data from individul links for properties and then used selenium to automate the scraping for the same parameters across the website
 
 Timeline: 
 Project started june 10,2021 
