@@ -23,50 +23,5 @@ o	If yes: Area
 •	State of the building (New, to be renovated, ...)
 
 
-creating a try except for the categories that might be missing
-try:
-    #enter all the functions for the below items (without their print lines.)
-    #Note: not sure if I should do them separately for each element)
-    property_sub_type=
-    equ_kitchen=
-    furnished=
-    open_fire=
-    terrace=
-    terrace_area=
-    garden=
-    garden_area=
-    land_surface=
-    area_surface=
-    facades_num=
-    pool=
-    build_state=
-except Exception as e:
-    property_sub_type= None
-    equ_kitchen= None
-    furnished= None
-    open_fire= None
-    terrace= None
-    terrace_area= None
-    garden= None
-    garden_area= None
-    land_surface= None
-    area_surface= None
-    facades_num= None
-    pool= None
-    build_state= None
 
-creating CSV file and opening it in excel:
-#with the import section at the top
-    import csv
-#directly after soup requests add:
-    ImmoEliza_csv_dataset=open('icd_scrape.csv','w')
-    csv_writer=csv.writer(ImmoEliza_csv_dataset)
-    csv_writer.writerow(['locality','property_type','property_sub_type','sale_type','price','rooms','area','equ_kitchen','furnished','Open fire','terrace','terrace_area','garden','land_surface','area_surface','facades_num','pool','build_state'])
-#at the end after our loop:
-    csv_writer.writerow(['locality','property_type','property_sub_type','sale_type','price','rooms','area','equ_kitchen','furnished','Open fire','terrace','terrace_area','garden','land_surface','area_surface','facades_num','pool','build_state'])
-    ImmoEliza_csv_dataset.close()
-# will be found on the right with the project file:
-    right click on the file
-    open in-->explorer
-    right click on the file and open with excel
 
