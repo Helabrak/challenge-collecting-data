@@ -91,11 +91,6 @@ import pandas as pd
 source=requests.get('https://www.immoweb.be/en/classified/apartment/for-sale/bertrix/6880/9376985?searchId=60c31d9d837ba').text
 soup = BeautifulSoup(source,'lxml')
 
-# Type of property (House/apartment)/Price/Type of sale (Exclusion of life sales) <div class="classified__header-primary-info"><h1 class="classified__title">
-    #       House
-    #       for sale
-    # </h1> <p class="classified__price"><span aria-hidden="true">€1,390,000</span> <span class="sr-only">1390000€</span></p></div>
-
 property=soup.body.main.find('h1',{'class': 'classified__title'}).text
 property_type=str.split(property)[0]
 print(property_type)
