@@ -26,20 +26,39 @@ Installation:
 Both Beautifulsoup and Selenium were installed 
 
 Usage:
+from bs4 import BeautifulSoup
+import requests
+
+source=requests.get('https://www.immoweb.be/fr/annonce/appartement/a-vendre/mons/7000/9379673?searchId=60c4debf72b3c').text
+soup = BeautifulSoup(source,'lxml')
+print(soup.prettify())
+main_container=soup.body.find("main",{'id': 'main-content'})
+print(main_container.prettify())
+
+property=soup.body.main.find('h1',{'class': 'classified__title'}).text
+property_type=str.split(property)[0]
+print(property_type)
+
+property=soup.body.main.find('h1',{'class': 'classified__title'}).text
+type_of_sale=str.split(property)[2]
+print(type_of_sale)
+
+price = soup.body.main.find( 'span', {'class': 'sr-only'} ).text
+print(price)
 
 Visuals:
 
-Contributors:Team members were Heba, Jacques and Leonor 
+
+Contributors:
+Team members were Heba, Jacques and Leonor 
 
 Data scraping: 
+we used Beautiful soup to get the data from individul links for properties and then used selenium to automate the scraping for the same parameters fro
+the parameters used werem the website
 
-we used Beautiful soup to get the data from individul properties and then used selenium to automate the scraping 
-the parameters used were
-Data merging using Selenium 
 Timeline: 
-2 days on data scraping while also using selenium to extact the links for the different pages 
-half a day to sum up and gets the final list of links and automate the data 
-half a day to do the presentation
+Project started june 10,2021 
 Deadline to submit final presentation to the client: Monday 14/6/2021
 
-
+main challanges: 
+we started with 
