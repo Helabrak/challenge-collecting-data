@@ -3,14 +3,43 @@
 
 # <div id="classified-app'> for the whole section
 
-# <div class_="classifiedfor:
+# <div class_="classified"
 
-# Locality --> <span(note not division but span) 'classified__information--address-raw'> then <span locality </span>==$0
+for:
+#to scrao the html
+from bs4 import BeautifulSoup
+import requests
+import pandas as pd
+
+source=requests.get('https://www.immoweb.be/en/classified/apartment/for-sale/bertrix/6880/9376985?searchId=60c31d9d837ba').text
+soup = BeautifulSoup(source,'lxml')
 
 # Type of property (House/apartment)/Price/Type of sale (Exclusion of life sales) <div class="classified__header-primary-info"><h1 class="classified__title">
     #       House
     #       for sale
     # </h1> <p class="classified__price"><span aria-hidden="true">€1,390,000</span> <span class="sr-only">1390000€</span></p></div>
+
+property=soup.body.main.find('h1',{'class': 'classified__title'}).text
+property_type=str.split(property)[0]
+print(property_type)
+
+property=soup.body.main.find('h1',{'class': 'classified__title'}).text
+type_of_sale=str.split(property)[2]
+print(type_of_sale)
+
+price = soup.body.main.find( 'span', {'class': 'sr-only'} ).text
+print(price)
+# Locality --> <span(note not division but span) 'classified__information--address-raw'> then <span locality </span>==$0
+
+#these are what I got 
+
+#Apartment
+#sale
+#246800€
+
+
+
+
 
 # Subtype of property (Bungalow, Chalet, Mansion, ...)--> not always provided
 
@@ -56,3 +85,72 @@
     Swimming pool
      </th>
 #State of the building (New, to be renovated, ...)
+
+•	Locality
+•	Type of property (House/apartment)
+•	Subtype of property (Bungalow, Chalet, Mansion, ...)
+•	Price
+•	Type of sale (Exclusion of life sales)
+•	Number of rooms
+•	Area
+•	Fully equipped kitchen (Yes/No)
+•	Furnished (Yes/No)
+•	Open fire (Yes/No)
+•	Terrace (Yes/No)
+o	If yes: Area
+•	Garden (Yes/No)
+o	If yes: Area
+•	Surface of the land
+•	Surface area of the plot of land
+•	Number of facades
+•	Swimming pool (Yes/No)
+•	State of the building (New, to be renovated, ...)
+
+
+creating a try except for the categories that might be missing
+try:
+    #enter all the functions for the below items (without their print lines.)
+    #Note: not sure if I should do them separately for each element)
+    property_sub_type=
+    equ_kitchen=
+    furnished=
+    open_fire=
+    terrace=
+    terrace_area=
+    garden=
+    garden_area=
+    land_surface=
+    area_surface=
+    facades_num=
+    pool=
+    build_state=
+except Exception as e:
+    property_sub_type= None
+    equ_kitchen= None
+    furnished= None
+    open_fire= None
+    terrace= None
+    terrace_area= None
+    garden= None
+    garden_area= None
+    land_surface= None
+    area_surface= None
+    facades_num= None
+    pool= None
+    build_state= None
+
+creating CSV file and opening it in excel:
+#with the import section at the top
+    import csv
+#directly after soup requests add:
+    ImmoEliza_csv_dataset=open('icd_scrape.csv','w')
+    csv_writer=csv.writer(ImmoEliza_csv_dataset)
+    csv_writer.writerow(['locality','property_type','property_sub_type','sale_type','price','rooms','area','equ_kitchen','furnished','Open fire','terrace','terrace_area','garden','land_surface','area_surface','facades_num','pool','build_state'])
+#at the end after our loop:
+    csv_writer.writerow(['locality','property_type','property_sub_type','sale_type','price','rooms','area','equ_kitchen','furnished','Open fire','terrace','terrace_area','garden','land_surface','area_surface','facades_num','pool','build_state'])
+    ImmoEliza_csv_dataset.close()
+# will be found on the right with the project file:
+    right click on the file
+    open in-->explorer
+    right click on the file and open with excel
+
