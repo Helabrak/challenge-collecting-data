@@ -1,7 +1,7 @@
 ImmoEliza real-estate project request: 
 
 
-Description: The company client, "ImmoEliza" wants to create a machine learning model to make price predictions on real estate sales in Belgium. for that we worked on a dataset that provides information on 10,000 properties from one of the main real-estate websites for property search in Belgium, that is called Immoweb, the information on these properties covered the main search categories/parameters as listed below: 
+Description: The client, "ImmoEliza" wants to create a machine learning model to make price predictions on real estate sales in Belgium. for that we worked on a dataset that provides information on 10,000 properties from one of the main real-estate websites for property search in Belgium, that is called Immoweb, the information on these properties covered the main search categories/parameters as listed below: 
   •	Locality
   •	Type of property (House/apartment)
   •	Subtype of property (Bungalow, Chalet, Mansion, ...)
@@ -48,9 +48,12 @@ print(price)
 
 Visuals:
 
-
 Contributors:
-Team members were Heba, Jacques and Leonor 
+other team members are  
+Leonor Drummond:https://github.com/ltadrummond
+JacquesDeclercq: https://github.com/JacquesDeclercq
+Bilal Mesmoudi:https://github.com/BMesm
+
 
 Data scraping: 
 we used Beautiful soup to get the data from individul links for properties and then used selenium to automate the scraping for the same parameters fro
@@ -60,5 +63,6 @@ Timeline:
 Project started june 10,2021 
 Deadline to submit final presentation to the client: Monday 14/6/2021
 
-main challanges: 
-we started with 
+personal situation:
+This project was carried out to create a dataset that will build the foundation for a machine learning model to make price predictions on real estate sales in Belgium for ImmoEliza real-estate
+
