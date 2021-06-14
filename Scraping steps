@@ -1,4 +1,8 @@
-Scraping steps
+this file has two main sections: 
+1-Scraping steps in general
+2- scraping for our specific project:
+
+1-Scraping steps in general: 
 Getting the HTML file
 from bs4 import BeautifulSoup
 import requests
@@ -50,9 +54,90 @@ for article in soup.findall('article'):
 locality=article.find('div',class='entry-content').p.text
 print(locality)
 
-Turn to CSV :
-import csv
-for loop..list.append(websites):
-   Maybe other selection from the list.append
-output_filename = ....
-    your_list.to_csv(output_filename)
+
+2- scraping for our specific project: 
+# on Immoweb:(note these might be subdivisions and we might need to scrap the main divions first and then dig down to the subclasses (discuss with the team tomorrow and check tutorial)
+
+# <div id="classified-app'> for the whole section
+
+# <div class_="classified"
+
+for:
+#to scrap the html
+from bs4 import BeautifulSoup
+import requests
+import pandas as pd
+
+source=requests.get('https://www.immoweb.be/en/classified/apartment/for-sale/bertrix/6880/9376985?searchId=60c31d9d837ba').text
+soup = BeautifulSoup(source,'lxml')
+
+# Type of property (House/apartment)/Price/Type of sale (Exclusion of life sales) <div class="classified__header-primary-info"><h1 class="classified__title">
+    #       House
+    #       for sale
+    # </h1> <p class="classified__price"><span aria-hidden="true">€1,390,000</span> <span class="sr-only">1390000€</span></p></div>
+
+property=soup.body.main.find('h1',{'class': 'classified__title'}).text
+property_type=str.split(property)[0]
+print(property_type)
+
+property=soup.body.main.find('h1',{'class': 'classified__title'}).text
+type_of_sale=str.split(property)[2]
+print(type_of_sale)
+
+price = soup.body.main.find( 'span', {'class': 'sr-only'} ).text
+print(price)
+# Locality --> <span(note not division but span) 'classified__information--address-raw'> then <span locality </span>==$0
+
+#these are what I got 
+
+#Apartment
+#sale
+#246800€
+
+
+
+
+
+# Subtype of property (Bungalow, Chalet, Mansion, ...)--> not always provided
+
+# Number of rooms: <span class="overview__text">
+
+# Area:<span class="overview__text">
+    # 20000
+    # <span class="abbreviation"><span aria-hidden="true">
+    # m² </span> <span class="sr-only">
+    # square meters  </span></span>
+    # of land </span>
+#Fully equipped kitchen (Yes/No)
+#Furnished (Yes/No)- interior division
+    <table class="classified-table"><tbody class="classified-table__body"><tr class="classified-table__row"><th scope="row" class="classified-table__header">
+    <tr class="classified-table__row"><th scope="row" class="classified-table__header">Furnished</th> <td class="classified-table__data">
+                                    No
+                                </td></tr>
+#Open fire (Yes/No)--.not always provided
+#Terrace (Yes/No)-->  not always provided
+    #If yes: Area -->  not always provided
+#Garden (Yes/No)
+    #If yes: Area
+#Surface of the land
+    <td class="classified-table__data">
+     452
+    <span class="abbreviation"><span aria-hidden="true">
+    m²   </span> <span class="sr-only">
+    square meters
+     </span></span></td>
+
+#Surface area of the plot of land( I guess here we need to select the raw with the number (square meters for the CSV/excel file to have the number directly)
+        <td class="classified-table__data">
+        20000
+        <span class="abbreviation"><span aria-hidden="true">
+                m²
+            </span> <span class="sr-only">
+                square meters
+            </span></span></td>
+
+#Number of facades
+#Swimming pool (Yes/No):
+    <th scope="row" class="classified-table__header">
+    Swimming pool
+     </th>
